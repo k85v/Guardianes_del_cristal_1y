@@ -8,10 +8,12 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
+	if QuestManager.quest_state != QuestManager.QuestState.ACTIVE:
+		return
 	if was_collected:
 		return
-
 	if body.is_in_group("player"):
 		was_collected = true
 		collected.emit()
+		QuestManager.collect_crystal()
 		queue_free()

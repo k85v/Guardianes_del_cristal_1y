@@ -11,7 +11,6 @@ var dialogue_index: int = 0
 var is_open: bool = false
 
 func _ready() -> void:
-	add_to_group("dialogue_ui")
 	Sprite.hide()
 	panel.hide()
 	continue_button.pressed.connect(next_dialogue)
@@ -22,6 +21,7 @@ func show_dialogue(character_name: String, dialogues: Array[String]) -> void:
 	dialogue_index = 0
 	is_open = true
 	name_label.text = character_name
+	dialogue_label.text = dialogues[0]
 	Sprite.show()
 	panel.show()
 func next_dialogue() -> void:
